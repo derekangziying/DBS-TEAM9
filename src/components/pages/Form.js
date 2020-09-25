@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 // import logo from './logo.svg';
 import { Row, Col, Button, Icon, Modal, Divider, Input, Select, Checkbox} from "antd";
 import moment from 'moment';
+import Axios from "axios";
 // import './App.css';
 
 function FormInput() {
+
   const [fieldName, setFieldName] = useState()
   const [customerName, setCustomerName] = useState()
   const [customerAge, setCustomerAge] = useState()
@@ -40,7 +42,9 @@ function FormInput() {
     errorMessage: {
       color: "red"
     }
-}
+  }
+
+  // {isSubmit, setIsSubmit} = useState(false);
 
 let currentTime = moment().format('DD/MM/YYYY - HH:mm:ss');
 let time = currentTime;
@@ -94,6 +98,26 @@ const submit = () =>{
     if(prodType == ""){
         setProdTypeErr("Product Type cannot be empty")
     }
+
+
+
+    // try {
+    //     const customer = { fieldName, fieldName };
+    //     const loginRes = Axios.post(
+    //             "http://localhost:5000/customer",
+    //         );
+    //         setUserData({
+    //             token: loginRes.data.token,
+    //         });
+    //         localStorage.setItem("auth-token", loginRes.data.token);
+    //         history.push("/");
+    //     } catch (err) {
+    //         err.response.data.msg && setError(err.response.data.msg);
+    //     }
+    // };
+
+
+
 }
 
 

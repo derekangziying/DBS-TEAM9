@@ -17,12 +17,11 @@ export default function Login() {
     try {
       const loginUser = { username, password };
       const loginRes = await Axios.post(
-        "TODO: ENDPOINT URL",
+        "http://localhost:3000/user/login",
         loginUser
       );
       setUserData({
         token: loginRes.data.token,
-        user: loginRes.data.user,
       });
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/");

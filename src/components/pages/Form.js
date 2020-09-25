@@ -7,6 +7,8 @@ import Axios from "axios";
 
 function FormInput() {
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const [fieldName, setFieldName] = useState()
   const [customerName, setCustomerName] = useState()
   const [customerAge, setCustomerAge] = useState()
@@ -116,9 +118,10 @@ const submit = () =>{
     //     }
     // };
 
+    setIsSubmitted(false);
 
 
-}
+};
 
 
 
@@ -244,6 +247,9 @@ const submit = () =>{
       <Divider style={{ color: "#d8d8d8", height: "30px" }}/>
 
       <Button onClick={loadDraft}>Load Draft</Button><Button onClick={saveAsDraft}>Save as Draft</Button> <Button onClick={submit} >Submit</Button>
+
+
+      {isSubmitted ? <p>submitted</p> : null}
 
     </div>
   );

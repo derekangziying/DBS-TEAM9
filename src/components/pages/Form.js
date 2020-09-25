@@ -57,6 +57,17 @@ const saveAsDraft = ()=> {
     setDImage(image)
     setDProdType(prodType)
 }
+
+const loadDraft= () => {
+    setFieldName(dFieldName)
+    setCustomerName(dCustomerName)
+    setCustomerAge(dCustomerAge)
+    setServiceOfficerName(dServiceOfficerName)
+    setNRIC(dNric)
+    setBranchCode(dBranchCode)
+    setImage(dImage)
+    setProdType(dProdType)
+}
 // let error;
 const submit = () =>{
     if(fieldName == ""){
@@ -208,7 +219,7 @@ const submit = () =>{
       
       <Divider style={{ color: "#d8d8d8", height: "30px" }}/>
 
-      <Button>Load Draft</Button><Button onClick={saveAsDraft}>Save as Draft</Button> <Button onClick={submit} >Submit</Button>
+      <Button onClick={loadDraft}>Load Draft</Button><Button onClick={saveAsDraft}>Save as Draft</Button> <Button onClick={submit} >Submit</Button>
 
     </div>
   );

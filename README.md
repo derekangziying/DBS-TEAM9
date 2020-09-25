@@ -12,4 +12,11 @@ yarn install
 ```
 yarn start
 ```
+
+3. Backend code
+```
+https://github.com/yjpan47/dbs_techtrek_room9
+```
+4. Run backend code at https://localhost:5000/
+
 4. Go to app at http://localhost:3000/

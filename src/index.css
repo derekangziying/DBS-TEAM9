@@ -76,3 +76,31 @@ body {
   background-color: #c8ecb7;
   font-size: 1.1rem;
 }
+
+/* header */
+
+#header {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ff0000;
+}
+#header .title {
+  margin: 0;
+  padding: 0 1rem;
+  color: #ffffff;
+}
+#header .auth-options {
+  height: 100%;
+  display: flex;
+}
+#header .auth-options button {
+  padding: 0 1rem;
+  background-color: #026358;
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+#header .auth-options button:hover {
+  background-color: #be3a3a;
+}

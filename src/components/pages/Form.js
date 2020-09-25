@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import { Row, Col, Button, Icon, Modal, Divider, Input, Select, Checkbox} from "antd";
 import moment from 'moment';
-import './App.css';
+// import './App.css';
 
 function FormInput() {
   const [fieldName, setFieldName] = useState()
@@ -10,13 +10,81 @@ function FormInput() {
   const [customerAge, setCustomerAge] = useState()
   const [serviceOfficerName, setServiceOfficerName] = useState()
   const [nric, setNRIC] = useState()
+  const [regTime, setRegTime] = useState()
   const [branchCode, setBranchCode] = useState()
   const [image, setImage]= useState()
   const [prodType, setProdType] = useState([])
 
-let time = moment().format('DD/MM/YYYY - HH:mm:ss');
+  const [fieldNameErr, setFieldNameErr] = useState()
+  const [customerNameErr, setCustomerNameErr] = useState()
+  const [customerAgeErr, setCustomerAgeErr] = useState()
+  const [serviceOfficerNameErr, setServiceOfficerNameErr] = useState()
+  const [nricErr, setNRICErr] = useState()
+  const [regTimeErr, setRegTimeErr] = useState()
+  const [branchCodeErr, setBranchCodeErr] = useState()
+  const [imageErr, setImageErr]= useState()
+  const [prodTypeErr, setProdTypeErr] = useState([])
+
+  const [dFieldName, setDFieldName] = useState()
+  const [dCustomerName, setDCustomerName] = useState()
+  const [dCustomerAge, setDCustomerAge] = useState()
+  const [dServiceOfficerName, setDServiceOfficerName] = useState()
+  const [dNric, setDNRIC] = useState()
+  const [dRegTime, setDRegTime] = useState()
+  const [dBranchCode, setDBranchCode] = useState()
+  const [dImage, setDImage]= useState()
+  const [dProdType, setDProdType] = useState([])
+  const [error, setError] = useState()
+
+  const styles = {
+    errorMessage: {
+      color: "red"
+    }
+}
+
+let currentTime = moment().format('DD/MM/YYYY - HH:mm:ss');
+let time = currentTime;
 console.log("time:")
 console.log(time)
+
+const saveAsDraft = ()=> {
+    setDFieldName(fieldName)
+    setDCustomerName(customerName)
+    setDCustomerAge(customerAge)
+    setDServiceOfficerName(serviceOfficerName)
+    setDNRIC(nric)
+    setDBranchCode(branchCode)
+    setDImage(image)
+    setDProdType(prodType)
+}
+// let error;
+const submit = () =>{
+    if(fieldName == ""){
+        setFieldNameErr("Field Name cannot be empty")
+    }
+    if(customerName == ""){
+        setCustomerNameErr("Customer Name cannot be empty")
+    }
+    // if(customerAge == 0){
+    //     error = "Field Name cannot be empty"
+    // }
+    if(serviceOfficerName == ""){
+        setServiceOfficerNameErr("Service Officer Name cannot be empty")
+    }
+    if(nric == ""){
+        setNRICErr("NRIC cannot be empty")
+    }
+    if(branchCode == ""){
+        setBranchCodeErr("Branch code cannot be empty")
+    }
+    // if(Image == 0){
+    //     error = "Branch code cannot be empty"
+    // }
+    if(prodType == ""){
+        setProdTypeErr("Product Type cannot be empty")
+    }
+}
+
 
 
 
@@ -28,7 +96,12 @@ console.log(time)
         Field Name:
         </Col>
         <Col span = "1">
-        {<Input placeholder="description" onChange={functSetFieldName}/>}
+        {<Input name="description" placeholder="description" onChange={e => setFieldName(e.target.value)}/>}
+        </Col>
+        <Col span = "3">
+            {fieldNameErr ? <div style={styles.errorMessage}>
+                {fieldNameErr}    
+            </div> : null}
         </Col>
     </Row>
       <Divider/>
@@ -38,7 +111,12 @@ console.log(time)
           Customer Name:
         </Col>
         <Col span = "5">
-          <Input placeholder="custName"  onChange={functSetCustName}/>
+          <Input name="custName" placeholder="custName"  onChange={e => setCustomerName(e.target.value)}/>
+        </Col>
+        <Col span = "3">
+            {customerNameErr ? <div style={styles.errorMessage}>
+                {customerNameErr}    
+            </div> : null}
         </Col>
       </Row>
       <Divider/>
@@ -48,7 +126,7 @@ console.log(time)
           Customer age:
         </Col>
         <Col span = "3">
-          <Input placeholder="custAge"/>
+          <Input placeholder="custAge" onChange={e => setCustomerAge(e.target.value)}/>
         </Col>
       </Row>
       <Divider/>
@@ -58,7 +136,12 @@ console.log(time)
           Service Officer Name:
         </Col>
         <Col span = "3">
-          <Input placeholder="Service Officer Name"/>
+          <Input placeholder="Service Officer Name" onChange={e => setServiceOfficerName(e.target.value)}/>
+        </Col>
+        <Col span = "3">
+            {serviceOfficerNameErr ? <div style={styles.errorMessage}>
+                {serviceOfficerNameErr}    
+            </div> : null}
         </Col>
       </Row>
       <Divider style={{ color: "#d8d8d8", height: "30px" }}/>
@@ -68,7 +151,12 @@ console.log(time)
           NRIC:
         </Col>
         <Col span = "3">
-          <Input placeholder="NRIC"/>
+          <Input placeholder="NRIC" onChange={e => setNRIC(e.target.value)}/>
+        </Col>
+        <Col span = "3">
+            {nricErr ? <div style={styles.errorMessage}>
+                {nricErr}    
+            </div> : null}
         </Col>
       </Row>
       <Divider style={{ color: "#d8d8d8", height: "30px" }}/>
@@ -88,8 +176,11 @@ console.log(time)
           Branch Code
         </Col>
         <Col span = "3">
-        <Input placeholder="branch code"/>
+        <Input placeholder="branch code" onChange={e => setBranchCode(e.target.value)}/>
         </Col>
+        {branchCodeErr ? <div style={styles.errorMessage}>
+                {branchCodeErr}    
+            </div> : null}
       </Row>
       <Divider style={{ color: "#d8d8d8", height: "30px" }}/>
       {/*image*/}
@@ -108,13 +199,16 @@ console.log(time)
           Product Type
         </Col>
         <Col span = "3">
-        <Input placeholder="Product type"/>
+        <Input placeholder="Product type" onChange={e => setProdType(e.target.value)}/>
         </Col>
+        {prodTypeErr ? <div style={styles.errorMessage}>
+                {prodTypeErr}    
+            </div> : null}
       </Row>
       
       <Divider style={{ color: "#d8d8d8", height: "30px" }}/>
 
-      <Button>Save as Draft</Button> <Button>Save</Button>
+      <Button>Load Draft</Button><Button onClick={saveAsDraft}>Save as Draft</Button> <Button onClick={submit} >Submit</Button>
 
     </div>
   );
